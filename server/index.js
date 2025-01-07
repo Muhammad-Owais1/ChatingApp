@@ -3,9 +3,15 @@ import { Server } from "socket.io";
 import { createServer } from "http";
 import "dotenv/config";
 import mongoose from "mongoose";
+import cors from "cors";
+
+import routes from "./src/routes/index.js";
 
 const PORT = process.env.PORT || 9999;
 const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 mongoose.connect(process.env.DB_URL);
 
@@ -20,6 +26,8 @@ app.get("/", (req, res) => {
     console.log(err);
   }
 });
+
+app.use("/api", routes);
 
 const server = createServer(app);
 
