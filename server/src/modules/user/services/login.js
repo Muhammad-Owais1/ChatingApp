@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 
-const loginUser = async (data) => {
+const loginUser = async (data, res) => {
   try {
     const user = await matchUserData(data);
 
@@ -11,9 +11,13 @@ const loginUser = async (data) => {
 
     if (isPasswordCorrect) {
       var token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+        sameSite: "strict",
+      });
       return {
         user,
-        token: token,
       };
     } else {
       throw new Error("Wronge email or password.");

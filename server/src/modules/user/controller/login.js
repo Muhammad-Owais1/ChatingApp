@@ -2,7 +2,7 @@ import loginUser from "../services/login.js";
 
 const loginController = async (req, res) => {
   try {
-    const user = await loginUser(req.body);
+    const user = await loginUser(req.body, res);
     res.status(201).send({
       req: req.body,
       status: 200,
