@@ -12,6 +12,7 @@ export default function RootLayout({ children }) {
       <body>
         <div className="w-full h-20 bg-slate-300">
           <Link href="/signup">Signup</Link>
+          <Link href="/login">Login</Link>
         </div>
         {children}
       </body>
