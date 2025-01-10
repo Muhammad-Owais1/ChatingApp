@@ -13,7 +13,7 @@ const loginUser = async (data, res) => {
       var token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
       res.cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+        secure: process.env.NODE_ENV === "production",
         sameSite: "strict",
       });
       return {
