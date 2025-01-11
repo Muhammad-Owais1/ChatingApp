@@ -1,9 +1,11 @@
 "use client";
 import { useActionState, useState } from "react";
 import axios from "axios";
+import { useAuth } from "@/context/AuthContext";
 
 export default function page() {
   const [message, setMessage] = useState("");
+  const { userInfo, setUserInfo } = useAuth();
 
   const [error, submitAction, isPending] = useActionState(
     async (prevState, formData) => {
@@ -19,6 +21,7 @@ export default function page() {
           }
         );
         console.log(response.data);
+        setUserInfo(response.data.user);
         setMessage(response.data.message);
       } catch (err) {
         console.log(err?.response?.data);

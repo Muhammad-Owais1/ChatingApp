@@ -2,11 +2,12 @@ import registerUser from "../services/register.js";
 
 const registerController = async (req, res) => {
   try {
-    await registerUser(req.body, res);
+    const user = await registerUser(req.body, res);
     res.status(201).send({
       req: req.body,
       status: 201,
       message: "User Created.",
+      user,
     });
   } catch (err) {
     console.log(err);

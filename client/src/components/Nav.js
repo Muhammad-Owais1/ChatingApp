@@ -5,7 +5,26 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 export default function Nav() {
-  const { userInfo } = useAuth();
+  const { userInfo, setUserInfo } = useAuth();
+
+  const logout = async () => {
+    try {
+      // Send a POST request to the backend to logout
+      const response = await axios.post(
+        "http://localhost:9999/api/auth/logout",
+        {}, // You can pass additional data if needed, but in this case, it's just the request to logout
+        { withCredentials: true } // This ensures that cookies are sent with the request
+      );
+
+      // Handle the response if necessary (logging out, redirecting, etc.)
+      console.log(response.data.message); // Should log 'Logged out successfully'
+
+      // Optionally clear the userInfo state or redirect the user
+      setUserInfo(null); // This clears the user data from context
+    } catch (err) {
+      console.error("Logout failed:", err?.response?.data);
+    }
+  };
 
   return (
     <>
@@ -25,7 +44,10 @@ export default function Nav() {
                 {userInfo.email}
               </p>
             </div>
-            <button className="bg-black text-white font-semibold text-xs rounded-sm py-2 px-4">
+            <button
+              className="bg-black text-white font-semibold text-xs rounded-sm py-2 px-4"
+              onClick={logout}
+            >
               Logout
             </button>
           </div>
