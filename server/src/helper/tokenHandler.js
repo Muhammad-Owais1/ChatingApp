@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import "dotenv/config";
 
 const authentication = (req, res, next) => {
-  const token = req.cookies.token;
+  const token = req.cookies?.token;
 
   if (!token) {
     return res.status(401).json({ message: "Token missing" });
@@ -13,7 +13,6 @@ const authentication = (req, res, next) => {
       return res.status(403).json({ message: "Invalid or expired token" });
     }
     req.user = user;
-    console.log(req.user);
     next();
   });
 };

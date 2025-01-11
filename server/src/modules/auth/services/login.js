@@ -10,7 +10,7 @@ const loginUser = async (data, res) => {
     const isPasswordCorrect = bcrypt.compareSync(data.password, user.password);
 
     if (isPasswordCorrect) {
-      var token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
+      const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
       res.cookie("token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",

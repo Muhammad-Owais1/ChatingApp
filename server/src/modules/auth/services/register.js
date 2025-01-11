@@ -6,8 +6,8 @@ import "dotenv/config";
 const registerUser = async (data, res) => {
   const password = bcrypt.hashSync(data.password, 10);
   data.password = password;
-
-  var token = jwt.sign({ email: data.email }, process.env.JWT_SECRET);
+  console.log(data.email);
+  const token = jwt.sign({ email: data.email }, process.env.JWT_SECRET);
   res.cookie("token", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

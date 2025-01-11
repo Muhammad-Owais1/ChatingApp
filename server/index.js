@@ -36,10 +36,6 @@ app.get("/", (req, res) => {
   }
 });
 
-app.get("/check", authentication, (req, res) => {
-  res.send("working");
-});
-
 app.use("/api", routes);
 
 const server = createServer(app);
