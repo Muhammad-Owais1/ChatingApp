@@ -41,28 +41,28 @@ export default function page() {
           <input
             type="text"
             placeholder="Username"
-            className="border-[1px] border-black p-2 text-sm"
+            className="border-[1px] border-white bg-black p-2 text-sm text-white"
             name="username"
           />
           <input
             type="email"
             placeholder="Email"
-            className="border-[1px] border-black p-2 text-sm"
+            className="border-[1px] border-white bg-black p-2 text-sm text-white"
             name="email"
           />
           <input
             type="password"
             placeholder="Password"
-            className="border-[1px] border-black p-2 text-sm"
+            className="border-[1px] border-white bg-black p-2 text-sm text-white"
             name="password"
           />
           <button
-            className="bg-black text-white font-semibold text-xs rounded-sm py-2 px-4"
+            className="bg-white text-black font-semibold text-xs rounded-sm py-2 px-4"
             onClick={() => setMessage("")}
           >
             {isPending ? "loading..." : "Signup"}
           </button>
-          {message && <p>{message}</p>}
+          {message && <p className="text-white text-xs">{message}</p>}
         </form>
       </div>
     </>

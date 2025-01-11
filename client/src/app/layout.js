@@ -14,7 +14,7 @@ const metadata = {
 export default function RootLayout({ children, login, signup, contacts }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-black">
         <AuthProvider>
           <MainLayout contacts={contacts} signup={signup} login={login}>
             {children}
@@ -41,7 +41,7 @@ const MainLayout = ({ children, login, signup, contacts }) => {
           : contacts}
         {!userInfo && (
           <button
-            className="mt-6 font-semibold text-sm"
+            className="mt-6 font-semibold text-sm text-white"
             onClick={() => setHaveAccount(!haveAccount)}
           >
             {!haveAccount ? (

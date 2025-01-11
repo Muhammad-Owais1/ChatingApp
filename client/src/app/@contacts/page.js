@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function page() {
-  return <div>baa</div>;
+  return (
+    <>
+      <div></div>
+    </>
+  );
 }

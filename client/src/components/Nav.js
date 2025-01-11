@@ -25,19 +25,19 @@ export default function Nav({ haveAccount, setHaveAccount }) {
 
   return (
     <>
-      <div className="w-full h-20 bg-slate-300 flex justify-between items-center px-4">
-        <h1 className="text-xl font-bold">CHATAPP</h1>
+      <div className="w-full h-20 bg-slate-900 flex justify-between items-center px-4">
+        <h1 className="text-xl font-bold text-white">CHATAPP</h1>
         {!userInfo ? (
           <div>
             <button
-              className="bg-black text-white font-semibold text-xs rounded-sm py-2 px-4"
+              className="bg-white text-black font-semibold text-xs rounded-sm py-2 px-4"
               onClick={() => setHaveAccount(false)}
             >
               Signup
             </button>
             <button
               onClick={() => setHaveAccount(true)}
-              className="ml-4 bg-black text-white font-semibold text-xs rounded-sm py-2 px-4"
+              className="ml-4 bg-white text-black font-semibold text-xs rounded-sm py-2 px-4"
             >
               Login
             </button>
@@ -45,13 +45,15 @@ export default function Nav({ haveAccount, setHaveAccount }) {
         ) : (
           <div className="flex gap-4">
             <div>
-              <p className="font-semibold uppercase">{userInfo.username}</p>
-              <p className="font-semibold text-xs text-slate-500 lowercase">
+              <p className="font-semibold uppercase text-white">
+                {userInfo.username}
+              </p>
+              <p className="font-semibold text-xs text-slate-400 lowercase">
                 {userInfo.email}
               </p>
             </div>
             <button
-              className="bg-black text-white font-semibold text-xs rounded-sm py-2 px-4"
+              className="bg-white text-black font-semibold text-xs rounded-sm py-2 px-4"
               onClick={logout}
             >
               Logout
