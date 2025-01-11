@@ -4,23 +4,20 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
-export default function Nav() {
+export default function Nav({ haveAccount, setHaveAccount }) {
   const { userInfo, setUserInfo } = useAuth();
 
   const logout = async () => {
     try {
-      // Send a POST request to the backend to logout
       const response = await axios.post(
         "http://localhost:9999/api/auth/logout",
-        {}, // You can pass additional data if needed, but in this case, it's just the request to logout
-        { withCredentials: true } // This ensures that cookies are sent with the request
+        {},
+        { withCredentials: true }
       );
 
-      // Handle the response if necessary (logging out, redirecting, etc.)
-      console.log(response.data.message); // Should log 'Logged out successfully'
+      console.log(response.data.message);
 
-      // Optionally clear the userInfo state or redirect the user
-      setUserInfo(null); // This clears the user data from context
+      setUserInfo(null);
     } catch (err) {
       console.error("Logout failed:", err?.response?.data);
     }
@@ -29,12 +26,21 @@ export default function Nav() {
   return (
     <>
       <div className="w-full h-20 bg-slate-300 flex justify-between items-center px-4">
+        <h1 className="text-xl font-bold">CHATAPP</h1>
         {!userInfo ? (
           <div>
-            <Link href="/signup">Signup</Link>
-            <Link href="/login" className="ml-4">
+            <button
+              className="bg-black text-white font-semibold text-xs rounded-sm py-2 px-4"
+              onClick={() => setHaveAccount(false)}
+            >
+              Signup
+            </button>
+            <button
+              onClick={() => setHaveAccount(true)}
+              className="ml-4 bg-black text-white font-semibold text-xs rounded-sm py-2 px-4"
+            >
               Login
-            </Link>
+            </button>
           </div>
         ) : (
           <div className="flex gap-4">

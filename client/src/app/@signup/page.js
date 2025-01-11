@@ -11,7 +11,7 @@ export default function page() {
     async (prevState, formData) => {
       try {
         const response = await axios.post(
-          "http://localhost:9999/api/auth/signin",
+          "http://localhost:9999/api/auth/signup",
           formData,
           {
             headers: {
@@ -24,8 +24,8 @@ export default function page() {
         setUserInfo(response.data.user);
         setMessage(response.data.message);
       } catch (err) {
-        console.log(err?.response?.data);
-        setMessage(err.response?.data?.message || "An error occurred.");
+        console.log(err.response.data);
+        setMessage(err.response.data.message);
       }
     }
   );
@@ -37,24 +37,30 @@ export default function page() {
           className="mt-16 flex flex-col items-center gap-10"
           action={submitAction}
         >
-          <h1 className="font-bold text-xl">Login</h1>
+          <h1 className="font-bold text-xl">Signup</h1>
+          <input
+            type="text"
+            placeholder="Username"
+            className="border-[1px] border-black p-2 text-sm"
+            name="username"
+          />
           <input
             type="email"
             placeholder="Email"
-            className="border-[1px] border-black"
+            className="border-[1px] border-black p-2 text-sm"
             name="email"
           />
           <input
             type="password"
             placeholder="Password"
-            className="border-[1px] border-black"
+            className="border-[1px] border-black p-2 text-sm"
             name="password"
           />
           <button
-            className="bg-slate-800 py-2 px-7 text-white"
+            className="bg-black text-white font-semibold text-xs rounded-sm py-2 px-4"
             onClick={() => setMessage("")}
           >
-            {isPending ? "loading..." : "Login"}
+            {isPending ? "loading..." : "Signup"}
           </button>
           {message && <p>{message}</p>}
         </form>
